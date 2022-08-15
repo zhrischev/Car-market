@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Offer } from '../models/offer.model';
-import { OfferService } from '../offers/offers.service';
+import { OfferService } from '../services/offers.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,11 +8,22 @@ import { OfferService } from '../offers/offers.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  offers: Offer[];
+  isMyOffersClicked = false;
+  allOffersBtnClass = 'active';
+  myOffersBtnClass = '';
 
-  constructor(private offerService: OfferService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.offers = this.offerService.getAllOffers();
+  ngOnInit(): void {}
+
+  onMyOffers() {
+    this.isMyOffersClicked = true;
+    this.allOffersBtnClass = '';
+    this.myOffersBtnClass = 'active';
+  }
+  onAllOffers() {
+    this.isMyOffersClicked = false;
+    this.allOffersBtnClass = 'active';
+    this.myOffersBtnClass = '';
   }
 }

@@ -1,0 +1,13 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.item {
+  width: 240px;
+  min-height: 240px;
+  max-height: auto;
+  float: left;
+  margin: 3px;
+  padding: 3px;
+}

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../models/user.model';
-import { ProfileService } from './profile.service';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,6 +10,7 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
   user: User;
+  isEditProfileClicked = false;
 
   constructor(private profileService: ProfileService) {}
 
@@ -20,5 +21,9 @@ export class ProfileComponent implements OnInit {
   selectUser(userEmail: string) {
     this.user = this.profileService.getUserByEmail(userEmail);
     console.log(this.user);
+  }
+
+  onEditProfile() {
+    this.isEditProfileClicked = !this.isEditProfileClicked;
   }
 }

@@ -1,0 +1,39 @@
+<div class="dropdown">
+  <button
+    class="btn btn-primary dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Select profile
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <a class="dropdown-item" (click)="selectUser('zaprin@abv.bg')">Zaprin</a>
+    </li>
+    <li>
+      <a class="dropdown-item" (click)="selectUser('test@abv.bg')">Test user</a>
+    </li>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h3>Personal information:</h3>
+      <div>First name: {{ user.firstName }}</div>
+      <div>Last name: {{ user.lastName }}</div>
+      <div>E-mail: {{ user.eMail }}</div>
+      <div>Phone number: {{ user.phoneNumber }}</div>
+      <div>
+        Adress: {{ user.address.city }}, {{ user.address.street }},
+        {{ user.address.streetNumber }}, {{ user.address.postCode }}
+      </div>
+    </div>
+    <div class="col-sm">
+      <div>
+        <img [src]="user.photo" class="item" alt="Not found!" />
+      </div>
+    </div>
+  </div>
+</div>
