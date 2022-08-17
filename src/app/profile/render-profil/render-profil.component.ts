@@ -3,22 +3,21 @@ import { User } from 'src/app/models/user.model';
 import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
-  selector: 'app-render-profile',
+  selector: 'app-render-profil',
   templateUrl: './render-profil.component.html',
   styleUrls: ['./render-profil.component.css'],
 })
 export class RenderProfilComponent implements OnInit {
   user: User;
-  users: User[];
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.user = this.profileService.getMainProfile();
-    this.users = this.profileService.getAllUsers();
+    this.user = this.profileService.getUserByEmail('zaprin@abv.bg');
   }
 
   selectUser(userEmail: string) {
     this.user = this.profileService.getUserByEmail(userEmail);
+    console.log(this.user);
   }
 }

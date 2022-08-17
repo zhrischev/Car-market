@@ -33,8 +33,14 @@ export class OfferService {
     return this.offers;
   }
 
-  getOffersCreatedBy(email: string) {
+  getAllOffersWithCreator(email: 'zaprin@abv.bg' | 'test@abv.bg') {
     return this.offers.filter((offer) => offer.creatorEmail === email);
+  }
+
+  getAllMyOffers() {
+    return this.offers.filter(
+      (offer) => offer.creatorEmail === 'zaprin@abv.bg'
+    );
   }
 
   addOffer(offer: Offer) {

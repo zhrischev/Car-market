@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Offer } from '../models/offer.model';
-import { User } from '../models/user.model';
 import { OfferService } from '../services/offers.service';
-import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-create-offer',
@@ -12,15 +10,10 @@ import { ProfileService } from '../services/profile.service';
 })
 export class CreateOfferComponent implements OnInit {
   offerForm: FormGroup;
-  users: User[];
 
-  constructor(
-    private offerService: OfferService,
-    private profileService: ProfileService
-  ) {}
+  constructor(private offerService: OfferService) {}
 
   ngOnInit(): void {
-    this.users = this.profileService.getAllUsers();
     this.offerForm = new FormGroup({
       make: new FormControl(null, Validators.required),
       model: new FormControl(null, Validators.required),
@@ -30,7 +23,7 @@ export class CreateOfferComponent implements OnInit {
       enginePower: new FormControl(null, Validators.required),
       transmission: new FormControl('Manual'),
       photoURL: new FormControl(null, Validators.required),
-      creatorEmail: new FormControl(this.users[0].eMail),
+      creatorEmail: new FormControl('zaprin@abv.bg'),
     });
   }
 

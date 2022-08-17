@@ -14,9 +14,8 @@ import { RenderOffersComponent } from './home-page/render-all-offers/render-offe
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RenderMyOffersComponent } from './home-page/render-my-offers/render-my-offers.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { RenderProfilComponent } from './profile/render-profile/render-profil.component';
+import { RenderProfilComponent } from './profile/render-profil/render-profil.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
-import { OfferComponent } from './home-page/offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { OfferComponent } from './home-page/offer/offer.component';
     RenderMyOffersComponent,
     RenderProfilComponent,
     EditProfileComponent,
-    OfferComponent,
   ],
   imports: [
     BrowserModule,

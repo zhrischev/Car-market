@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { User } from '../../models/user.model';
-import { Address } from '../../models/address.model';
+import { Adress } from '../../models/adress.model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -11,41 +11,33 @@ import { Address } from '../../models/address.model';
 })
 export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
-  mainProfile: User;
-  users: User[];
+  user: User;
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.mainProfile = this.profileService.getMainProfile();
-    this.users = this.profileService.getAllUsers();
+    this.user = this.profileService.getUserByEmail('zaprin@abv.bg');
 
     this.visualizeUserDataInForm();
   }
 
   visualizeUserDataInForm() {
     this.profileForm = new FormGroup({
-      email: new FormControl(this.mainProfile.eMail, Validators.required),
-      firstName: new FormControl(
-        this.mainProfile.firstName,
-        Validators.required
-      ),
-      lastName: new FormControl(this.mainProfile.lastName, Validators.required),
-      phone: new FormControl(this.mainProfile.phoneNumber, Validators.required),
-      city: new FormControl(this.mainProfile.address.city, Validators.required),
-      street: new FormControl(
-        this.mainProfile.address.street,
-        Validators.required
-      ),
+      email: new FormControl(this.user.eMail, Validators.required),
+      firstName: new FormControl(this.user.firstName, Validators.required),
+      lastName: new FormControl(this.user.lastName, Validators.required),
+      phone: new FormControl(this.user.phoneNumber, Validators.required),
+      city: new FormControl(this.user.address.city, Validators.required),
+      street: new FormControl(this.user.address.street, Validators.required),
       streetNumber: new FormControl(
-        this.mainProfile.address.streetNumber,
+        this.user.address.streetNumber,
         Validators.required
       ),
       postCode: new FormControl(
-        this.mainProfile.address.postCode,
+        this.user.address.postCode,
         Validators.required
       ),
-      photoURL: new FormControl(this.mainProfile.photo, Validators.required),
+      photoURL: new FormControl(this.user.photo, Validators.required),
     });
   }
 
@@ -63,7 +55,7 @@ export class EditProfileComponent implements OnInit {
       email,
       firstName,
       lastName,
-      new Address(street, city, postCode, streetNumber),
+      new Adress(street, city, postCode, streetNumber),
       phone,
       photoURL
     );
@@ -71,36 +63,35 @@ export class EditProfileComponent implements OnInit {
   }
 
   selectUser(userEmail: string) {
-    this.mainProfile = this.profileService.getUserByEmail(userEmail);
+    this.user = this.profileService.getUserByEmail(userEmail);
     this.visualizeUserDataInForm();
   }
 
   changeProfileData() {
     const userDataForEdit = this.saveProfileFormData();
     if (userDataForEdit.firstName) {
-      this.mainProfile.firstName = userDataForEdit.firstName;
+      this.user.firstName = userDataForEdit.firstName;
     }
     if (userDataForEdit.lastName) {
-      this.mainProfile.lastName = userDataForEdit.lastName;
+      this.user.lastName = userDataForEdit.lastName;
     }
     if (userDataForEdit.phoneNumber) {
-      this.mainProfile.phoneNumber = userDataForEdit.phoneNumber;
+      this.user.phoneNumber = userDataForEdit.phoneNumber;
     }
     if (userDataForEdit.photo) {
-      this.mainProfile.photo = userDataForEdit.photo;
+      this.user.photo = userDataForEdit.photo;
     }
     if (userDataForEdit.address.city) {
-      this.mainProfile.address.city = userDataForEdit.address.city;
+      this.user.address.city = userDataForEdit.address.city;
     }
     if (userDataForEdit.address.postCode) {
-      this.mainProfile.address.postCode = userDataForEdit.address.postCode;
+      this.user.address.postCode = userDataForEdit.address.postCode;
     }
     if (userDataForEdit.address.street) {
-      this.mainProfile.address.street = userDataForEdit.address.street;
+      this.user.address.street = userDataForEdit.address.street;
     }
     if (userDataForEdit.address.streetNumber) {
-      this.mainProfile.address.streetNumber =
-        userDataForEdit.address.streetNumber;
+      this.user.address.streetNumber = userDataForEdit.address.streetNumber;
     }
   }
 
