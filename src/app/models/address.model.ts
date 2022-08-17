@@ -1,4 +1,4 @@
-export class Adress {
+export class Address {
   public street: string;
   public city: string;
   public postCode: string;

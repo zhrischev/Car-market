@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Offer } from 'src/app/models/offer.model';
+import { User } from 'src/app/models/user.model';
 import { OfferService } from 'src/app/services/offers.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-render-my-offers',
@@ -9,10 +11,17 @@ import { OfferService } from 'src/app/services/offers.service';
 })
 export class RenderMyOffersComponent implements OnInit {
   myOffers: Offer[];
+  mainProfile: User;
 
-  constructor(private offersService: OfferService) {}
+  constructor(
+    private offersService: OfferService,
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit(): void {
-    this.myOffers = this.offersService.getAllMyOffers();
+    this.mainProfile = this.profileService.getMainProfile();
+    this.myOffers = this.offersService.getOffersCreatedBy(
+      this.mainProfile.eMail
+    );
   }
 }

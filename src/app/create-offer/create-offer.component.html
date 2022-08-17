@@ -65,8 +65,9 @@
       id="creatorEmail"
       formControlName="creatorEmail"
     >
-      <option value="zaprin@abv.bg">zaprin@abv.bg</option>
-      <option value="test@abv.bg">test@abv.bg</option>
+      <option *ngFor="let user of users" [value]="user.eMail">
+        {{ user.eMail }}
+      </option>
     </select>
   </div>
   <button class="btn btn-primary" type="submit" [disabled]="!offerForm.valid">
