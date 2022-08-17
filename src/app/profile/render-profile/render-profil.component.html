@@ -8,11 +8,10 @@
     Select profile
   </button>
   <ul class="dropdown-menu">
-    <li>
-      <a class="dropdown-item" (click)="selectUser('zaprin@abv.bg')">Zaprin</a>
-    </li>
-    <li>
-      <a class="dropdown-item" (click)="selectUser('test@abv.bg')">Test user</a>
+    <li *ngFor="let user of users">
+      <a class="dropdown-item" (click)="selectUser(user.eMail)">{{
+        user.firstName
+      }}</a>
     </li>
   </ul>
 </div>

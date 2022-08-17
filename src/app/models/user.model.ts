@@ -1,10 +1,10 @@
-import { Adress } from './adress.model';
+import { Address } from './address.model';
 
 export class User {
   public eMail: string;
   public firstName: string;
   public lastName: string;
-  public address: Adress;
+  public address: Address;
   public phoneNumber: string;
   public photo: string;
 
@@ -12,7 +12,7 @@ export class User {
     eMail: string,
     firstName: string,
     lastName: string,
-    address: Adress,
+    address: Address,
     phoneNumber: string,
     photo: string
   ) {

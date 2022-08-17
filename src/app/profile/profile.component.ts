@@ -15,12 +15,9 @@ export class ProfileComponent implements OnInit {
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.user = this.profileService.getUserByEmail('zaprin@abv.bg');
-  }
-
-  selectUser(userEmail: string) {
-    this.user = this.profileService.getUserByEmail(userEmail);
-    console.log(this.user);
+    this.user = this.profileService.getUserByEmail(
+      this.profileService.getMainProfile().eMail
+    );
   }
 
   onEditProfile() {

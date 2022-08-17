@@ -8,16 +8,15 @@
     Select profile to edit
   </button>
   <ul class="dropdown-menu">
-    <li>
-      <a class="dropdown-item" (click)="selectUser('zaprin@abv.bg')">Zaprin</a>
-    </li>
-    <li>
-      <a class="dropdown-item" (click)="selectUser('test@abv.bg')">Test user</a>
+    <li *ngFor="let user of users">
+      <a class="dropdown-item" (click)="selectUser(user.firstName)">{{
+        user.eMail
+      }}</a>
     </li>
   </ul>
 </div>
 <div>
-  <h4>Selected user: {{ user.eMail }}</h4>
+  <h4>Selected user: {{ mainProfile.eMail }}</h4>
 </div>
 <form [formGroup]="profileForm" (ngSubmit)="onSaveChanges()">
   <div class="form-row">
