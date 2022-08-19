@@ -33,6 +33,10 @@ export class OfferService {
     return this.offers;
   }
 
+  getOfferById(id: string) {
+    return this.offers.find((offer) => offer.id === id);
+  }
+
   getOffersCreatedBy(email: string) {
     return this.offers.filter((offer) => offer.creatorEmail === email);
   }

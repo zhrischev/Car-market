@@ -2,12 +2,8 @@
   <div class="row" *ngFor="let offer of allOffers">
     <div class="col-sm">
       <h3>{{ offer.make }} {{ offer.model }}</h3>
-      <div>First registration (year):{{ offer.year }}</div>
-      <div>Fuel Type: {{ offer.fuelType }}</div>
-      <div>Transmission: {{ offer.transmission }}</div>
-      <div>Engine power (HP): {{ offer.enginePower }}</div>
-      <div>Owner email: {{ offer.creatorEmail }}</div>
-      <h4>Price: {{ offer.price }}</h4>
+      <h4 priceFormat>Price: {{ offer.price }}</h4>
+      <a [routerLink]="offer.id">See details</a>
     </div>
     <div class="col-sm">
       <div class="item"><img [src]="offer.photo" alt="Photo not found!" /></div>

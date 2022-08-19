@@ -17,6 +17,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RenderProfilComponent } from './profile/render-profile/render-profil.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { OfferComponent } from './home-page/offer/offer.component';
+import { StartingComponent } from './starting/starting.component';
+import { PriceFormatDirective } from './directives/price.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { OfferComponent } from './home-page/offer/offer.component';
     RenderProfilComponent,
     EditProfileComponent,
     OfferComponent,
+    StartingComponent,
+    PriceFormatDirective,
   ],
   imports: [
     BrowserModule,
