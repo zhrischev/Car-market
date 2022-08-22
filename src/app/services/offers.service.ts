@@ -13,7 +13,10 @@ export class OfferService {
       'Petrol',
       360,
       'Manual',
-      'https://automedia.investor.bg/media/files/resized/uploadedfiles/640x0/228/32fc3c87da2834657647bab5753ff228-03-1.jpg',
+      [
+        'https://automedia.investor.bg/media/files/resized/uploadedfiles/640x0/228/32fc3c87da2834657647bab5753ff228-03-1.jpg',
+        'https://automedia.investor.bg/media/files/resized/gallery/760x/d0b/16bc1d1b77d870f28c23f2e68678ed0b-03-6.jpg',
+      ],
       'zaprin@abv.bg'
     ),
     new Offer(
@@ -24,7 +27,9 @@ export class OfferService {
       'Diesel',
       131,
       'Manual',
-      'https://cdn3.focus.bg/autodata/i/audi/a3/a3-8l/large/efe20d6374603bcdbc549c93cd3024ff.jpg',
+      [
+        'https://cdn3.focus.bg/autodata/i/audi/a3/a3-8l/large/efe20d6374603bcdbc549c93cd3024ff.jpg',
+      ],
       'test@abv.bg'
     ),
   ];

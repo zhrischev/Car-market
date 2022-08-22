@@ -12,7 +12,7 @@ export class Offer {
   public fuelType: Fuel;
   public enginePower: number;
   public transmission: Transmission;
-  public photo: string;
+  public photos: string[];
   public creatorEmail: string;
 
   constructor(
@@ -23,7 +23,7 @@ export class Offer {
     fuelType: Fuel,
     enginePower: number,
     transmission: Transmission,
-    photo: string,
+    photos: string[],
     creatorEmail: string
   ) {
     this.id = uuidv4();
@@ -34,7 +34,7 @@ export class Offer {
     this.fuelType = fuelType;
     this.enginePower = enginePower;
     this.transmission = transmission;
-    this.photo = photo;
+    this.photos = photos;
     this.creatorEmail = creatorEmail;
   }
 }

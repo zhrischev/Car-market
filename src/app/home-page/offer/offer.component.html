@@ -10,7 +10,9 @@
       <h4 priceFormat>Price: {{ offer.price }}</h4>
     </div>
     <div class="col-sm">
-      <div class="item"><img [src]="offer.photo" alt="Photo not found!" /></div>
+      <div class="item" *ngFor="let photo of offer.photos">
+        <img [src]="photo" alt="Photo not found!" />
+      </div>
     </div>
   </div>
 </div>

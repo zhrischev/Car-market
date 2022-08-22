@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Offer } from '../models/offer.model';
 import { User } from '../models/user.model';
 import { OfferService } from '../services/offers.service';
@@ -20,6 +20,10 @@ export class CreateOfferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  private initForm() {
     this.users = this.profileService.getAllUsers();
     this.offerForm = new FormGroup({
       make: new FormControl(null, Validators.required),
@@ -31,7 +35,13 @@ export class CreateOfferComponent implements OnInit {
       transmission: new FormControl('Manual'),
       photoURL: new FormControl(null, Validators.required),
       creatorEmail: new FormControl(this.users[0].eMail),
+      photos: new FormArray([new FormControl(null, Validators.required)]),
     });
+  }
+
+  get controls() {
+    // a getter!
+    return (<FormArray>this.offerForm.get('photos')).controls;
   }
 
   createOffer() {
@@ -43,6 +53,7 @@ export class CreateOfferComponent implements OnInit {
     const enginePower = +this.offerForm.value.enginePower;
     const transmission = this.offerForm.value.transmission;
     const photoURL = this.offerForm.value.photoURL;
+    const additionalPhotos = this.offerForm.value.photos;
     const creatorEmail = this.offerForm.value.creatorEmail;
     const offer = new Offer(
       make,
@@ -52,9 +63,16 @@ export class CreateOfferComponent implements OnInit {
       fuelType,
       enginePower,
       transmission,
-      photoURL,
+      [],
       creatorEmail
     );
+    offer.photos.push(photoURL);
+    console.log(additionalPhotos);
+    if (additionalPhotos) {
+      for (const photo of additionalPhotos) {
+        offer.photos.push(photo);
+      }
+    }
     return offer;
   }
 
@@ -64,5 +82,13 @@ export class CreateOfferComponent implements OnInit {
     console.log(this.offerService);
     this.offerForm.reset();
     alert('The offer was created!');
+  }
+
+  onAddPhoto() {
+    (<FormArray>this.offerForm.get('photos')).push(new FormControl(null));
+  }
+
+  onRemovePhoto(index) {
+    (<FormArray>this.offerForm.get('photos')).removeAt(index);
   }
 }

@@ -50,7 +50,7 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="photo">Photo</label>
+    <label for="photo">Cover Photo</label>
     <input
       class="form-control"
       id="photo"
@@ -70,6 +70,24 @@
       </option>
     </select>
   </div>
+  <hr />
+  <div class="form-group" formArrayName="photos">
+    <div class="row">
+      <label for="photo">Additional Photos</label>
+      <div class="col-xs-12" *ngFor="let photo of controls; let i = index">
+        <input class="form-control" id="photoTest" [formControlName]="i" />
+        <button class="btn btn-danger" type="button" (click)="onRemovePhoto(i)">
+          Remove photo
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="onAddPhoto()">
+        + Add photo
+      </button>
+    </div>
+  </div>
+  <hr />
   <button class="btn btn-primary" type="submit" [disabled]="!offerForm.valid">
     Create offer
   </button>

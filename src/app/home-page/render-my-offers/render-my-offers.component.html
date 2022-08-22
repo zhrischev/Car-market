@@ -6,7 +6,9 @@
       <a [routerLink]="offer.id">See details</a>
     </div>
     <div class="col-sm">
-      <div class="item"><img [src]="offer.photo" alt="Photo not found!" /></div>
+      <div class="item">
+        <img [src]="offer.photos[0]" alt="Photo not found!" />
+      </div>
     </div>
   </div>
 </div>
