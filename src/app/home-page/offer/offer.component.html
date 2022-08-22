@@ -10,8 +10,61 @@
       <h4 priceFormat>Price: {{ offer.price }}</h4>
     </div>
     <div class="col-sm">
-      <div class="item" *ngFor="let photo of offer.photos">
-        <img [src]="photo" alt="Photo not found!" />
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-interval="false"
+      >
+        <!-- <div class="carousel-indicators">
+          <button
+            *ngFor="let photo of offer.photos; let i = index"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            [data-bs-slide-to]="i"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div> -->
+        <div class="carousel-inner">
+          <div
+            class="carousel-item"
+            *ngFor="let photo of offer.photos; let i = index"
+            [ngClass]="i === 0 ? 'active' : ''"
+          >
+            <img [src]="photo" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
   </div>
