@@ -1,0 +1,86 @@
+<form [formGroup]="offerForm" (ngSubmit)="onEditOffer()">
+  <div class="form-group">
+    <label for="make">Make</label>
+    <input class="form-control" id="make" formControlName="make" />
+  </div>
+  <div class="form-group">
+    <label for="model">Model</label>
+    <input class="form-control" id="model" formControlName="model" />
+  </div>
+  <div class="form-group">
+    <label for="year">Year</label>
+    <input class="form-control" id="year" formControlName="year" />
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input
+      class="form-control"
+      id="price"
+      placeholder="Value in USD"
+      formControlName="price"
+    />
+  </div>
+  <div class="form-group">
+    <label for="fuelType">Fuel Type</label>
+    <select class="form-control" id="fuelType" formControlName="fuelType">
+      <option>Petrol</option>
+      <option>Diesel</option>
+      <option>Hybrid</option>
+      <option>Electric</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="enginePower">Engine Power</label>
+    <input
+      class="form-control"
+      id="hp"
+      placeholder="horse power"
+      formControlName="enginePower"
+    />
+  </div>
+  <div class="form-group">
+    <label for="transmission">Transmission</label>
+    <select
+      class="form-control"
+      id="transmission"
+      formControlName="transmission"
+    >
+      <option>Manual</option>
+      <option>Automatic</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="coverPhoto">Cover Photo</label>
+    <input
+      class="form-control"
+      id="coverPhoto"
+      placeholder="Photo URL"
+      formControlName="coverPhoto"
+    />
+  </div>
+  <hr />
+  <div class="form-group" formArrayName="photos">
+    <div class="row">
+      <label for="additionalPhoto">Additional Photos</label>
+      <div class="col-xs-12" *ngFor="let photo of controls; let i = index">
+        <input
+          class="form-control"
+          id="additionalPhoto"
+          [formControlName]="i"
+        />
+        <button class="btn btn-danger" type="button" (click)="onRemovePhoto(i)">
+          Remove photo
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="onAddPhoto()">
+        + Add photo
+      </button>
+    </div>
+  </div>
+  <hr />
+  <button class="btn btn-primary" type="submit" [disabled]="!offerForm.valid">
+    Save Changes
+  </button>
+</form>

@@ -19,6 +19,8 @@ import { EditProfileComponent } from './profile/edit-profile/edit-profile.compon
 import { OfferComponent } from './home-page/offer/offer.component';
 import { StartingComponent } from './starting/starting.component';
 import { PriceFormatDirective } from './directives/price.directive';
+import { EditOfferComponent } from './home-page/edit-offer/edit-offer.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { PriceFormatDirective } from './directives/price.directive';
     OfferComponent,
     StartingComponent,
     PriceFormatDirective,
+    EditOfferComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
