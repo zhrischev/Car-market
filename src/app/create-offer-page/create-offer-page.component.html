@@ -58,18 +58,6 @@
       formControlName="photoURL"
     />
   </div>
-  <div class="form-group">
-    <label for="creatorEmail">Creator email</label>
-    <select
-      class="form-control"
-      id="creatorEmail"
-      formControlName="creatorEmail"
-    >
-      <option *ngFor="let user of users" [value]="user.eMail">
-        {{ user.eMail }}
-      </option>
-    </select>
-  </div>
   <hr />
   <div class="form-group" formArrayName="photos">
     <div class="row">

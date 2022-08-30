@@ -1,38 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { Offer } from 'src/app/models/offer.model';
+import { HttpService } from './http.service';
 
 @Injectable()
 export class OfferService {
-  private offers: Offer[] = [
-    new Offer(
-      'BMW',
-      'M3',
-      2003,
-      19999,
-      'Petrol',
-      360,
-      'Manual',
-      [
-        'https://automedia.investor.bg/media/files/resized/uploadedfiles/640x0/228/32fc3c87da2834657647bab5753ff228-03-1.jpg',
-        'https://automedia.investor.bg/media/files/resized/gallery/760x/d0b/16bc1d1b77d870f28c23f2e68678ed0b-03-6.jpg',
-      ],
-      'zaprin@abv.bg'
-    ),
-    new Offer(
-      'Audi',
-      'A3',
-      2003,
-      1999,
-      'Diesel',
-      131,
-      'Manual',
-      [
-        'https://cdn3.focus.bg/autodata/i/audi/a3/a3-8l/large/efe20d6374603bcdbc549c93cd3024ff.jpg',
-      ],
-      'test@abv.bg'
-    ),
-  ];
+  private offers: Offer[] = [];
+  offersChanged = new Subject<Offer[]>();
+
+  constructor(private http: HttpService) {}
 
   getAllOffers() {
     return this.offers;
@@ -48,6 +25,21 @@ export class OfferService {
 
   addOffer(offer: Offer) {
     this.offers.push(offer);
+    this.http
+      .post(
+        'https://car-market-7b838-default-rtdb.europe-west1.firebasedatabase.app/offers.json',
+        offer
+      )
+      .subscribe();
+  }
+
+  setOffers(offers: Offer[]) {
+    this.offers = offers;
+    this.offersChanged.next(this.offers.slice());
+  }
+
+  resetOffers() {
+    this.offers = [];
   }
 
   deleteOffer(offer: Offer) {

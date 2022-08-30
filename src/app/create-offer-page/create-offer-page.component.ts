@@ -6,11 +6,11 @@ import { OfferService } from '../services/offers.service';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
-  selector: 'app-create-offer',
-  templateUrl: './create-offer.component.html',
-  styleUrls: ['./create-offer.component.css'],
+  selector: 'app-create-offer-page',
+  templateUrl: './create-offer-page.component.html',
+  styleUrls: ['./create-offer-page.component.css'],
 })
-export class CreateOfferComponent implements OnInit {
+export class CreateOfferPageComponent implements OnInit {
   offerForm: FormGroup;
   users: User[];
 
@@ -35,7 +35,7 @@ export class CreateOfferComponent implements OnInit {
       transmission: new FormControl('Manual'),
       photoURL: new FormControl(null, Validators.required),
       creatorEmail: new FormControl(this.users[0].eMail),
-      photos: new FormArray([new FormControl(null, Validators.required)]),
+      photos: new FormArray([]),
     });
   }
 
@@ -54,7 +54,6 @@ export class CreateOfferComponent implements OnInit {
     const transmission = this.offerForm.value.transmission;
     const photoURL = this.offerForm.value.photoURL;
     const additionalPhotos = this.offerForm.value.photos;
-    const creatorEmail = this.offerForm.value.creatorEmail;
     const offer = new Offer(
       make,
       model,
@@ -64,7 +63,7 @@ export class CreateOfferComponent implements OnInit {
       enginePower,
       transmission,
       [],
-      creatorEmail
+      this.profileService.getLoggedUser().eMail
     );
     offer.photos.push(photoURL);
     console.log(additionalPhotos);

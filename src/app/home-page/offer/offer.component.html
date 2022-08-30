@@ -69,7 +69,7 @@
     </div>
   </div>
   <app-edit-offer *ngIf="isEditMode"></app-edit-offer>
-  <div class="col-sm" *ngIf="offer.creatorEmail === mainUserEmail">
+  <div class="col-sm" *ngIf="offer.creatorEmail === loggedUserEmail">
     <button type="button" class="btn btn-primary" (click)="onEditOffer()">
       {{ isEditMode ? "Back to the offer" : "Edit Offer" }}
     </button>

@@ -15,7 +15,7 @@ export class OfferComponent implements OnInit, OnDestroy {
   paramsSubscription: Subscription;
   offer: Offer;
   isEditMode = false;
-  mainUserEmail: string;
+  loggedUserEmail: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,8 +26,7 @@ export class OfferComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.offerId = this.route.snapshot.params['id'];
     this.offer = this.offerService.getOfferById(this.offerId);
-    this.mainUserEmail =
-      this.profileService.getUserByEmail('zaprin@abv.bg').eMail;
+    this.loggedUserEmail = this.profileService.getLoggedUser().eMail;
 
     this.paramsSubscription = this.route.params.subscribe(
       (params: Params) => (this.offerId = params['id'])

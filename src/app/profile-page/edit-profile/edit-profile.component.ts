@@ -17,7 +17,7 @@ export class EditProfileComponent implements OnInit {
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.mainProfile = this.profileService.getMainProfile();
+    this.mainProfile = this.profileService.getLoggedUser();
     this.users = this.profileService.getAllUsers();
 
     this.visualizeUserDataInForm();
