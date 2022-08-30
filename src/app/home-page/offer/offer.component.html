@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="!isEditMode">
     <div class="col-sm">
       <h3>{{ offer.make }} {{ offer.model }}</h3>
       <div>First registration (year):{{ offer.year }}</div>
@@ -10,7 +10,68 @@
       <h4 priceFormat>Price: {{ offer.price }}</h4>
     </div>
     <div class="col-sm">
-      <div class="item"><img [src]="offer.photo" alt="Photo not found!" /></div>
+      <div
+        id="carouselExampleIndicators"
+        class="carousel slide"
+        data-interval="false"
+      >
+        <!-- <div class="carousel-indicators">
+          <button
+            *ngFor="let photo of offer.photos; let i = index"
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            [data-bs-slide-to]="i"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleIndicators"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+          ></button>
+        </div> -->
+        <div class="carousel-inner">
+          <div
+            class="carousel-item"
+            *ngFor="let photo of offer.photos; let i = index"
+            [ngClass]="i === 0 ? 'active' : ''"
+          >
+            <img [src]="photo" class="d-block w-100" alt="..." />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleIndicators"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
+  </div>
+  <app-edit-offer *ngIf="isEditMode"></app-edit-offer>
+  <div class="col-sm" *ngIf="offer.creatorEmail === loggedUserEmail">
+    <button type="button" class="btn btn-primary" (click)="onEditOffer()">
+      {{ isEditMode ? "Back to the offer" : "Edit Offer" }}
+    </button>
   </div>
 </div>

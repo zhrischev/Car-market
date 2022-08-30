@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { take } from 'rxjs';
 import { Offer } from '../models/offer.model';
+import { HttpService } from '../services/http.service';
 import { OfferService } from '../services/offers.service';
 
 @Component({
@@ -8,13 +17,28 @@ import { OfferService } from '../services/offers.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
+  isLoading = true;
   isMyOffersClicked = false;
   allOffersBtnClass = 'active';
   myOffersBtnClass = '';
+  errorMessage: string = null;
 
-  constructor() {}
+  constructor(private http: HttpService, private offersService: OfferService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.http.fetchOffers().subscribe(
+      (resData) => {
+        this.offersService.setOffers(resData);
+        this.isLoading = false;
+      },
+      (error) => {
+        this.offersService.resetOffers();
+        this.errorMessage = error.error.error;
+        console.log(error);
+        this.isLoading = false;
+      }
+    );
+  }
 
   onMyOffers() {
     this.isMyOffersClicked = true;

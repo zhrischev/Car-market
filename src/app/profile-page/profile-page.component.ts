@@ -4,21 +4,16 @@ import { User } from '../models/user.model';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-profile-page',
+  templateUrl: './profile-page.component.html',
+  styleUrls: ['./profile-page.component.css'],
 })
-export class ProfileComponent implements OnInit {
-  user: User;
+export class ProfilePageComponent implements OnInit {
   isEditProfileClicked = false;
 
   constructor(private profileService: ProfileService) {}
 
-  ngOnInit(): void {
-    this.user = this.profileService.getUserByEmail(
-      this.profileService.getMainProfile().eMail
-    );
-  }
+  ngOnInit(): void {}
 
   onEditProfile() {
     this.isEditProfileClicked = !this.isEditProfileClicked;

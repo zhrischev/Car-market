@@ -9,13 +9,12 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class RenderProfilComponent implements OnInit {
   user: User;
-  users: User[];
 
   constructor(private profileService: ProfileService) {}
 
   ngOnInit(): void {
-    this.user = this.profileService.getMainProfile();
-    this.users = this.profileService.getAllUsers();
+    this.user = this.profileService.getLoggedUser();
+    console.log(this.user);
   }
 
   selectUser(userEmail: string) {

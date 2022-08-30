@@ -30,7 +30,13 @@
     </button>
   </li>
 </ul>
-<div class="tab-content" id="pills-tabContent">
+<div style="text-align: center" *ngIf="isLoading">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div class="alert alert-danger" *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+<div class="tab-content" id="pills-tabContent" *ngIf="!isLoading">
   <div
     class="tab-pane fade show active"
     id="pills-home"

@@ -11,7 +11,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class RenderMyOffersComponent implements OnInit {
   myOffers: Offer[];
-  mainProfile: User;
+  loggedUser: User;
 
   constructor(
     private offersService: OfferService,
@@ -19,9 +19,9 @@ export class RenderMyOffersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.mainProfile = this.profileService.getMainProfile();
+    this.loggedUser = this.profileService.getLoggedUser();
     this.myOffers = this.offersService.getOffersCreatedBy(
-      this.mainProfile.eMail
+      this.loggedUser.eMail
     );
   }
 }
