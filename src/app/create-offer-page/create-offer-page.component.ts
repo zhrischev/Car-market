@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Offer } from '../models/offer.model';
-import { User } from '../models/user.model';
 import { OfferService } from '../services/offers.service';
 import { ProfileService } from '../services/profile.service';
 
@@ -12,7 +11,6 @@ import { ProfileService } from '../services/profile.service';
 })
 export class CreateOfferPageComponent implements OnInit {
   offerForm: FormGroup;
-  users: User[];
 
   constructor(
     private offerService: OfferService,
@@ -24,7 +22,6 @@ export class CreateOfferPageComponent implements OnInit {
   }
 
   private initForm() {
-    this.users = this.profileService.getAllUsers();
     this.offerForm = new FormGroup({
       make: new FormControl(null, Validators.required),
       model: new FormControl(null, Validators.required),
@@ -33,14 +30,13 @@ export class CreateOfferPageComponent implements OnInit {
       fuelType: new FormControl('Petrol'),
       enginePower: new FormControl(null, Validators.required),
       transmission: new FormControl('Manual'),
-      photoURL: new FormControl(null, Validators.required),
-      creatorEmail: new FormControl(this.users[0].eMail),
+      coverPhoto: new FormControl(null, Validators.required),
+      creatorEmail: new FormControl(this.profileService.getLoggedUser().eMail),
       photos: new FormArray([]),
     });
   }
 
   get controls() {
-    // a getter!
     return (<FormArray>this.offerForm.get('photos')).controls;
   }
 
@@ -52,7 +48,7 @@ export class CreateOfferPageComponent implements OnInit {
     const fuelType = this.offerForm.value.fuelType;
     const enginePower = +this.offerForm.value.enginePower;
     const transmission = this.offerForm.value.transmission;
-    const photoURL = this.offerForm.value.photoURL;
+    const coverPhoto = this.offerForm.value.coverPhoto;
     const additionalPhotos = this.offerForm.value.photos;
     const offer = new Offer(
       make,
@@ -65,7 +61,7 @@ export class CreateOfferPageComponent implements OnInit {
       [],
       this.profileService.getLoggedUser().eMail
     );
-    offer.photos.push(photoURL);
+    offer.photos.push(coverPhoto);
     console.log(additionalPhotos);
     if (additionalPhotos) {
       for (const photo of additionalPhotos) {

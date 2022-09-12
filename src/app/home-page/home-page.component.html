@@ -29,28 +29,109 @@
       My offers
     </button>
   </li>
+  <li>
+    <div class="dropdown">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Sort Offers
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByPriceAsc()"
+            >By price (lowest first)</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByPriceDesc()"
+            >By price (highest first)</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByCreateDateAsc()"
+            >By date (oldest first)</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByCreateDateDesc()"
+            >By date (newest first)</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByMakeAsc()"
+            >By make (ascending)</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" (click)="orderOffersByMakeDesc()"
+            >By make (descending)</a
+          >
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li>
+    <div class="dropdown">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Make
+      </button>
+      <ul class="dropdown-menu">
+        <form #makeForm="ngForm" (ngSubmit)="onSubmit(makeForm)">
+          <li *ngFor="let make of allOffersMake">
+            <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [id]="make"
+                ngModel
+                [name]="make"
+              />
+              <label class="form-check-label" [for]="make">
+                {{ make }}
+              </label>
+            </div>
+          </li>
+          <button type="submit" class="btn btn-success">Filter</button> |
+          <button
+            class="btn btn-warning"
+            type="button"
+            (click)="onClearFilter(makeForm)"
+          >
+            Clear Filter
+          </button>
+        </form>
+      </ul>
+    </div>
+  </li>
 </ul>
 <div style="text-align: center" *ngIf="isLoading">
   <app-loading-spinner></app-loading-spinner>
 </div>
 <div class="alert alert-danger" *ngIf="errorMessage">
-  <p>{{ errorMessage }}</p>
+  <p>
+    {{ errorMessage }}.
+    {{ errorMessage === "Permission denied" ? "Please sing in!" : "" }}
+  </p>
 </div>
-<div class="tab-content" id="pills-tabContent" *ngIf="!isLoading">
+<div
+  class="tab-content"
+  id="pills-tabContent"
+  *ngIf="!isLoading && !errorMessage"
+>
   <div
     class="tab-pane fade show active"
     id="pills-home"
     role="tabpanel"
     aria-labelledby="pills-home-tab"
   >
-    <app-render-offers *ngIf="!isMyOffersClicked"></app-render-offers>
-  </div>
-  <div
-    class="tab-pane fade show active"
-    id="pills-profile"
-    role="tabpanel"
-    aria-labelledby="pills-profile-tab"
-  >
-    <app-render-my-offers *ngIf="isMyOffersClicked"></app-render-my-offers>
+    <app-render-offers [offers]="offers"></app-render-offers>
   </div>
 </div>

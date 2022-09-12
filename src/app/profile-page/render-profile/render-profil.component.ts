@@ -16,8 +16,4 @@ export class RenderProfilComponent implements OnInit {
     this.user = this.profileService.getLoggedUser();
     console.log(this.user);
   }
-
-  selectUser(userEmail: string) {
-    this.user = this.profileService.getUserByEmail(userEmail);
-  }
 }

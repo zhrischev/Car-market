@@ -14,6 +14,7 @@ export class Offer {
   public transmission: Transmission;
   public photos: string[];
   public creatorEmail: string;
+  public createDate: Date;
 
   constructor(
     make: string,
@@ -36,5 +37,10 @@ export class Offer {
     this.transmission = transmission;
     this.photos = photos;
     this.creatorEmail = creatorEmail;
+    this.createDate = new Date();
+  }
+
+  get publishedDate() {
+    return this.createDate;
   }
 }

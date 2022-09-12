@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Address } from '../models/address.model';
 import { User } from '../models/user.model';
-import { AuthService, AuthResponseData } from '../services/auth.service';
+import { AuthResponseData, AuthService } from '../services/auth.service';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
-  selector: 'app-auth-page',
-  templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.css'],
+  selector: 'app-sign-up-page',
+  templateUrl: './sign-up-page.component.html',
+  styleUrls: ['./sign-up-page.component.css'],
 })
-export class AuthPageComponent implements OnInit {
+export class SignUpPageComponent implements OnInit {
   isLoading = false;
   error: string = null;
 
@@ -30,15 +30,26 @@ export class AuthPageComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    const firstName = form.value.firstName;
+    const lastName = form.value.lastName;
+    const phone = form.value.phone;
+    const city = form.value.city;
+    const postCode = form.value.postCode;
+    const streetNumber = form.value.streetNumber;
+    const streetName = form.value.street;
+    const photo = form.value.photo;
+    const address = new Address(streetName, city, postCode, streetNumber);
+    const user = new User(email, firstName, lastName, address, phone, photo);
+    console.log(user);
     let authObs: Observable<AuthResponseData>;
 
     this.isLoading = true;
 
-    authObs = this.authService.signin(email, password);
+    authObs = this.authService.singup(email, password);
 
     authObs.subscribe(
       (dataRes) => {
-        this.profileService.logUser(email);
+        this.profileService.createUser(user);
         this.isLoading = false;
         this.router.navigate(['home']);
       },
@@ -51,6 +62,4 @@ export class AuthPageComponent implements OnInit {
 
     form.reset();
   }
-
-  onSignUp() {}
 }

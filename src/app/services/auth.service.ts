@@ -1,9 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { FirebaseUser } from '../models/firebase-user.model';
+import { ProfileService } from './profile.service';
 
 export interface AuthResponseData {
   kind: string;
@@ -70,7 +70,7 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
-    this.router.navigate(['./account']);
+    this.router.navigate(['./login']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);

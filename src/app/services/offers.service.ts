@@ -23,19 +23,25 @@ export class OfferService {
     return this.offers.filter((offer) => offer.creatorEmail === email);
   }
 
+  getAllUniqueMakes() {
+    const allUniqueMakes = new Set(this.offers.map((offer) => offer.make));
+    return Array.from(allUniqueMakes);
+  }
+
   addOffer(offer: Offer) {
     this.offers.push(offer);
-    this.http
-      .post(
-        'https://car-market-7b838-default-rtdb.europe-west1.firebasedatabase.app/offers.json',
-        offer
-      )
-      .subscribe();
+    const url = `https://car-market-7b838-default-rtdb.europe-west1.firebasedatabase.app/offers/${offer.id}.json`;
+    this.http.put(url, offer).subscribe();
   }
 
   setOffers(offers: Offer[]) {
     this.offers = offers;
     this.offersChanged.next(this.offers.slice());
+  }
+
+  editOffer(offer: Offer) {
+    const url = `https://car-market-7b838-default-rtdb.europe-west1.firebasedatabase.app/offers/${offer.id}.json`;
+    this.http.patch(url, offer).subscribe();
   }
 
   resetOffers() {

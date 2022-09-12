@@ -11,9 +11,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileService } from './services/profile.service';
 import { OfferService } from './services/offers.service';
-import { RenderOffersComponent } from './home-page/render-all-offers/render-offers.component';
+import { RenderOffersComponent } from './home-page/render-offers/render-offers.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RenderMyOffersComponent } from './home-page/render-my-offers/render-my-offers.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RenderProfilComponent } from './profile-page/render-profile/render-profil.component';
 import { EditProfileComponent } from './profile-page/edit-profile/edit-profile.component';
@@ -25,6 +24,9 @@ import { AuthPageComponent } from './auth-page/auth-page.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { OfferFormComponent } from './shared/offer-form/offer-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,6 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     ProfilePageComponent,
     PageNotFoundComponent,
     RenderOffersComponent,
-    RenderMyOffersComponent,
     RenderProfilComponent,
     EditProfileComponent,
     OfferComponent,
@@ -44,6 +45,8 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     AuthPageComponent,
     LoadingSpinnerComponent,
     HeaderComponent,
+    OfferFormComponent,
+    SignUpPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     MatTabsModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [
     ProfileService,

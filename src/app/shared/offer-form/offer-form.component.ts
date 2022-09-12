@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
 import { Offer } from 'src/app/models/offer.model';
 import { OfferService } from 'src/app/services/offers.service';
 
 @Component({
-  selector: 'app-edit-offer',
-  templateUrl: './edit-offer.component.html',
-  styleUrls: ['./edit-offer.component.css'],
+  selector: 'app-offer-form',
+  templateUrl: './offer-form.component.html',
+  styleUrls: ['./offer-form.component.css'],
 })
-export class EditOfferComponent implements OnInit {
+export class OfferFormComponent implements OnInit {
   offer: Offer;
   offerForm: FormGroup;
 
@@ -45,6 +44,7 @@ export class EditOfferComponent implements OnInit {
   }
 
   get controls() {
+    // a getter!
     return (<FormArray>this.offerForm.get('photos')).controls;
   }
 
