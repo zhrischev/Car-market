@@ -1,0 +1,32 @@
+<div class="container">
+  <div
+    class="row"
+    *ngFor="let offer of offers | slice: (page - 1) * pageSize:page * pageSize"
+  >
+    <div class="col-sm">
+      <h3>{{ offer.make }} {{ offer.model }}</h3>
+      <h4 priceFormat>Price: {{ offer.price }}</h4>
+      <p>Published on {{ offer.createDate | date: "short" }}</p>
+      <a [routerLink]="offer.id">See details</a>
+    </div>
+    <div class="col-sm">
+      <div class="item">
+        <img [src]="offer.photos[0]" alt="Photo not found!" />
+      </div>
+    </div>
+  </div>
+  <div>
+    {{ (page - 1) * pageSize + 1 }} -
+    {{
+      (page - 1) * pageSize + pageSize > offers.length
+        ? offers.length
+        : (page - 1) * pageSize + pageSize
+    }}
+    from {{ offers.length }} offers
+  </div>
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="offers.length"
+  ></ngb-pagination>
+</div>

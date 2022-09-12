@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Offer } from 'src/app/models/offer.model';
 import { OfferService } from 'src/app/services/offers.service';
 
@@ -8,11 +8,11 @@ import { OfferService } from 'src/app/services/offers.service';
   styleUrls: ['./render-offers.component.css'],
 })
 export class RenderOffersComponent implements OnInit {
-  allOffers: Offer[];
+  @Input() offers: Offer[];
+  page = 1;
+  pageSize = 2;
 
-  constructor(private offersService: OfferService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.allOffers = this.offersService.getAllOffers();
-  }
+  ngOnInit(): void {}
 }

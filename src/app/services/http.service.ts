@@ -13,6 +13,28 @@ export class HttpService {
     return this.http.post(url, body);
   }
 
+  put(url: string, body: any) {
+    return this.http.put(url, body);
+  }
+
+  get(url: string) {
+    return this.http.get<User[]>(url).pipe(
+      map((resData) => {
+        const dataArray = [];
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            dataArray.push({ ...resData[key] });
+          }
+        }
+        return dataArray;
+      })
+    );
+  }
+
+  patch(url: string, body: any) {
+    return this.http.patch(url, body);
+  }
+
   fetchUsers() {
     return this.http
       .get<User[]>(

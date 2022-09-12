@@ -1,4 +1,5 @@
 import { Address } from './address.model';
+import { v4 as uuidv4 } from 'uuid';
 
 export class User {
   public eMail: string;
@@ -7,6 +8,7 @@ export class User {
   public address: Address;
   public phoneNumber: string;
   public photo: string;
+  public id: string;
 
   constructor(
     eMail: string,
@@ -22,5 +24,6 @@ export class User {
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.photo = photo;
+    this.id = uuidv4();
   }
 }

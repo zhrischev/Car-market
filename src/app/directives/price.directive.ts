@@ -7,9 +7,7 @@ import { toArray } from 'rxjs';
 export class PriceFormatDirective implements OnInit, AfterViewInit {
   constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {
-    // this.elementRef.nativeElement.style.backgroundColor = 'green';
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     const text = this.elementRef.nativeElement.textContent;
