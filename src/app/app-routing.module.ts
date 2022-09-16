@@ -12,7 +12,6 @@ type PathMatch = 'prefix' | 'full';
 
 const appRoutes = [
   // { path: '', component: StartingPageComponent },
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' as PathMatch },
   { path: 'create-offer', component: CreateOfferPageComponent },
   { path: 'profile', component: ProfilePageComponent },

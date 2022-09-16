@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer.model';
-import { OfferService } from 'src/app/services/offers.service';
 
 @Component({
   selector: 'app-render-offers',
@@ -12,7 +12,13 @@ export class RenderOffersComponent implements OnInit {
   page = 1;
   pageSize = 2;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  changePageSize(size: number) {
+    this.pageSize = size;
+    console.log(this.pageSize);
+    this.router.navigate(['home']);
+  }
 }

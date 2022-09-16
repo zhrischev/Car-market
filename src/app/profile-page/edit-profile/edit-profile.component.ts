@@ -12,6 +12,7 @@ import { Address } from '../../models/address.model';
 export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
   loggedUser: User;
+  isSaveChangesClicked = false;
 
   constructor(private profileService: ProfileService) {}
 
@@ -100,6 +101,9 @@ export class EditProfileComponent implements OnInit {
   onSaveChanges() {
     this.changeProfileData();
     this.profileService.editLoggedUser(this.loggedUser);
-    alert('All changes were saved successfully!');
+    this.isSaveChangesClicked = true;
+    // setTimeout(() => {
+    //   this.isSaveChangesClicked = false;
+    // }, 2000);
   }
 }
