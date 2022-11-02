@@ -1,13 +1,15 @@
 img {
-  max-width: 100%;
-  height: auto;
+  float: left;
+  width: 520px;
+  height: 360px;
+  object-fit: cover;
 }
 
-.item {
-  width: 360px;
-  min-height: 360px;
-  max-height: auto;
-  float: left;
-  margin: 3px;
-  padding: 3px;
+.pointer {
+  cursor: pointer;
+}
+.main {
+  background-color: white;
+  border-style: ridge;
+  border-radius: 10px;
 }
