@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Offer } from '../models/offer.model';
-import { HttpService } from '../services/http.service';
-import { OfferService } from '../services/offers.service';
-import { ProfileService } from '../services/profile.service';
+import { Offer } from 'src/app/models/offer.model';
+import { HttpService } from 'src/app/services/http.service';
+import { OfferService } from 'src/app/services/offers.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-home-page',

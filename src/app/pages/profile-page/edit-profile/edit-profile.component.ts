@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
-import { User } from '../../models/user.model';
-import { Address } from '../../models/address.model';
+import { User } from 'src/app/models/user.model';
+import { Address } from 'src/app/models/address.model';
 
 @Component({
   selector: 'app-edit-profile',

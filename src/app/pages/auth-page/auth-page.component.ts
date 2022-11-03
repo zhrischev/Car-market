@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Address } from '../models/address.model';
-import { User } from '../models/user.model';
-import { AuthService, AuthResponseData } from '../services/auth.service';
-import { ProfileService } from '../services/profile.service';
+import { AuthService, AuthResponseData } from 'src/app/services/auth.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-auth-page',
