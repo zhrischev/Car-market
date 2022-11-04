@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Offer } from '../models/offer.model';
-import { OfferService } from '../services/offers.service';
-import { ProfileService } from '../services/profile.service';
+import { Offer } from 'src/app/models/offer.model';
+import { OfferService } from 'src/app/services/offers.service';
+import { ProfileService } from 'src/app/services/profile.service';
 
 @Component({
   selector: 'app-create-offer-page',

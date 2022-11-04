@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthPageComponent } from './auth-page/auth-page.component';
-import { CreateOfferPageComponent } from './create-offer-page/create-offer-page.component';
-import { HomePageComponent } from './home-page/home-page.component';
-import { OfferComponent } from './home-page/offer/offer.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
+import { AuthPageComponent } from 'src/app/pages/auth-page/auth-page.component';
+import { CreateOfferPageComponent } from 'src/app/pages/create-offer-page/create-offer-page.component';
+import { HomePageComponent } from 'src/app/pages/home-page/home-page.component';
+import { OfferComponent } from 'src/app/pages/home-page/offer/offer.component';
+import { PageNotFoundComponent } from 'src/app/pages/page-not-found/page-not-found.component';
+import { ProfilePageComponent } from 'src/app/pages/profile-page/profile-page.component';
+import { SignUpPageComponent } from 'src/app/pages/sign-up-page/sign-up-page.component';
 
 type PathMatch = 'prefix' | 'full';
 
 const appRoutes = [
   // { path: '', component: StartingPageComponent },
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' as PathMatch },
   { path: 'create-offer', component: CreateOfferPageComponent },
   { path: 'profile', component: ProfilePageComponent },

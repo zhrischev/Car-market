@@ -1,18 +1,23 @@
 <div class="container">
   <div
-    class="row"
+    class="row main"
     *ngFor="let offer of offers | slice: (page - 1) * pageSize:page * pageSize"
   >
     <div class="col-sm">
-      <h3>{{ offer.make }} {{ offer.model }}</h3>
+      <h3 class="pointer" [routerLink]="offer.id">
+        {{ offer.make }} {{ offer.model }}
+      </h3>
       <h4 priceFormat>Price: {{ offer.price }}</h4>
       <p>Published on {{ offer.createDate | date: "short" }}</p>
       <a [routerLink]="offer.id">See details</a>
     </div>
     <div class="col-sm">
-      <div class="item">
-        <img [src]="offer.photos[0]" alt="Photo not found!" />
-      </div>
+      <img
+        class="img-thumbnail img-fluid pointer"
+        [src]="offer.photos[0]"
+        alt="Photo not found!"
+        [routerLink]="offer.id"
+      />
     </div>
   </div>
   <div>
@@ -22,7 +27,12 @@
         ? offers.length
         : (page - 1) * pageSize + pageSize
     }}
-    from {{ offers.length }} offers
+    from {{ offers.length }} offers | Show
+    <select id="PerPage" [(ngModel)]="pageSize">
+      <option [ngValue]="2" selected="selected">2 Offers</option>
+      <option [ngValue]="5">5 Offers</option>
+      <option [ngValue]="10">10 Offers</option>
+    </select>
   </div>
   <ngb-pagination
     [(page)]="page"

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
-import { User } from '../../models/user.model';
-import { Address } from '../../models/address.model';
+import { User } from 'src/app/models/user.model';
+import { Address } from 'src/app/models/address.model';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,6 +12,7 @@ import { Address } from '../../models/address.model';
 export class EditProfileComponent implements OnInit {
   profileForm: FormGroup;
   loggedUser: User;
+  isSaveChangesClicked = false;
 
   constructor(private profileService: ProfileService) {}
 
@@ -100,6 +101,9 @@ export class EditProfileComponent implements OnInit {
   onSaveChanges() {
     this.changeProfileData();
     this.profileService.editLoggedUser(this.loggedUser);
-    alert('All changes were saved successfully!');
+    this.isSaveChangesClicked = true;
+    // setTimeout(() => {
+    //   this.isSaveChangesClicked = false;
+    // }, 2000);
   }
 }

@@ -1,5 +1,4 @@
 import { AfterViewInit, Directive, ElementRef, OnInit } from '@angular/core';
-import { toArray } from 'rxjs';
 
 @Directive({
   selector: '[priceFormat]',

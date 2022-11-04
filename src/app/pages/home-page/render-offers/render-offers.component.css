@@ -1,0 +1,15 @@
+img {
+  float: left;
+  width: 520px;
+  height: 360px;
+  object-fit: cover;
+}
+
+.pointer {
+  cursor: pointer;
+}
+.main {
+  background-color: white;
+  border-style: ridge;
+  border-radius: 10px;
+}

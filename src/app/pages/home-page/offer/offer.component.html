@@ -38,13 +38,18 @@
             aria-label="Slide 3"
           ></button>
         </div> -->
-        <div class="carousel-inner">
+        <div class="carousel-inner img-thumbnail img-fluid">
           <div
             class="carousel-item"
             *ngFor="let photo of offer.photos; let i = index"
             [ngClass]="i === 0 ? 'active' : ''"
           >
-            <img [src]="photo" class="d-block w-100" alt="..." />
+            <img
+              class="img-thumbnail img-fluid"
+              [src]="photo"
+              class="d-block w-100"
+              alt="..."
+            />
           </div>
         </div>
         <button

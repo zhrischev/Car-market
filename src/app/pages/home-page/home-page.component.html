@@ -25,6 +25,7 @@
       aria-controls="pills-profile"
       (click)="onMyOffers()"
       [ngClass]="myOffersBtnClass"
+      *ngIf="loggedUserEmail"
     >
       My offers
     </button>
